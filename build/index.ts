@@ -1,6 +1,5 @@
 import DynamicImportQueryPlugin from './plugins/DynamicImportQueryPlugin';
 import fs from 'fs';
-import lodash from 'lodash';
 import moment from 'moment';
 import path from 'path';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
@@ -32,7 +31,7 @@ const entry = {
             `${pathData.chunk?.name?.replace(/^[a-z]{2}_[A-Z]{2}_/, '')}.js`,
         publicPath: `${config.server}`,
     },
-    ...lodash.cloneDeep(webpackConfig),
+    ...webpackConfig,
 } as Configuration;
 
 const modules = moduleDirs.filter(

@@ -1,7 +1,8 @@
+import svgToMiniDataURI from 'mini-svg-data-uri';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import VueLoaderPlugin = require('vue-loader/lib/plugin');
-import svgToMiniDataURI from 'mini-svg-data-uri';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { VueLoaderPlugin } = require('vue-loader');
 
 export default {
     target: 'web',
@@ -14,6 +15,7 @@ export default {
         extensions: ['.tsx', '.ts', '.js', '.vue', '.json'],
         // modules: ['node_modules', path.resolve(__dirname, 'src')],
     },
+    plugins: [new VueLoaderPlugin()],
     module: {
         rules: [
             {
@@ -77,5 +79,4 @@ export default {
             },
         ],
     },
-    plugins: [new VueLoaderPlugin()],
 };
