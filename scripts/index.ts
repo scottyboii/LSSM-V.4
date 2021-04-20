@@ -29,8 +29,8 @@ const scriptHandlers = {
         );
     },
     predev() {
-        this.emojis();
-        this.lint();
+        // this.emojis();
+        // this.lint();
         this.tscPrebuild();
         console.log(execSync('node prebuild').toString());
     },
@@ -46,8 +46,8 @@ const scriptHandlers = {
         console.log(execSync('tsc -b docs/.vuepress/').toString());
     },
     docs() {
-        this.tscDocs();
-        console.log(execSync('vuepress build docs').toString());
+        // this.tscDocs();
+        // console.log(execSync('vuepress build docs').toString());
     },
     preBuild() {
         this.emojis();

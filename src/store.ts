@@ -12,7 +12,6 @@ import storage from './store/storage';
 import { LSSMEvent } from '../typings/helpers';
 import { Modules } from '../typings/Module';
 import { RootState } from '../typings/store/RootState';
-import { VueConstructor } from 'vue/types/vue';
 import {
     ActionStoreParams,
     addStyle,
@@ -32,9 +31,7 @@ import {
     StoreOptions,
 } from 'vuex';
 
-export default (Vue: VueConstructor): Store<RootState> => {
-    Vue.use(Vuex);
-
+export default (): Store<RootState> => {
     return new Vuex.Store<RootState>({
         modules: {
             storage,

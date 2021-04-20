@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 
 import * as Tabs from 'vue-slim-tabs';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -17,14 +17,15 @@ require('./natives/navTabsClicker');
 require('./natives/lightbox');
 (async () => {
     if (window.location.pathname.match(/^\/users\//)) return;
-    Vue.config.productionTip = false;
 
     const appContainer = document.createElement('div') as HTMLDivElement;
     document.body.appendChild(appContainer);
 
     window.keepAlive = true;
 
-    Vue.use(VueJSModal, {
+    const LSSM = createApp(LSSMV4);
+
+    LSSM.use(VueJSModal, {
         dynamic: true,
         dynamicDefaults: {
             adaptive: true,
@@ -33,18 +34,15 @@ require('./natives/lightbox');
         },
         dialog: true,
     });
-    Vue.use(ToggleButton);
-    Vue.use(Tabs);
-    Vue.use(Notifications);
+    LSSM.use(await i18n());
+    LSSM.use(store());
+    LSSM.use(ToggleButton);
+    LSSM.use(Tabs);
+    LSSM.use(Notifications);
+    LSSM.component('font-awesome-icon', FontAwesomeIcon);
+    LSSM.config.globalProperties.$utils = utils;
 
-    Vue.component('font-awesome-icon', FontAwesomeIcon);
-    utils(Vue);
-
-    const LSSM = new Vue({
-        store: store(Vue),
-        i18n: await i18n(Vue),
-        render: h => h(LSSMV4),
-    }).$mount(appContainer);
+    LSSM.mount(appContainer);
 
     window[PREFIX] = LSSM;
 
