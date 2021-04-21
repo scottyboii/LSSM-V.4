@@ -1033,7 +1033,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons/faAsterisk';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons/faChartLine';
@@ -1045,126 +1045,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignComponent } from 'typings/modules/Redesign';
 import { Vehicle } from 'typings/Vehicle';
-import { VehicleWindow } from '../parsers/vehicle';
 
-type Component = RedesignComponent<
-    'vehicle',
-    'vehicle',
-    VehicleWindow,
-    {
-        faSitemap: IconDefinition;
-        faPortrait: IconDefinition;
-        faUser: IconDefinition;
-        faAsterisk: IconDefinition;
-        faPalette: IconDefinition;
-        faEdit: IconDefinition;
-        faChartLine: IconDefinition;
-        faUsers: IconDefinition;
-        faTrash: IconDefinition;
-        missionListSrc: number;
-        search: string;
-        searchTimeout: null | number;
-        sort: string;
-        sortDir: 'asc' | 'desc';
-        hospitalListSrc: number;
-        cellListSrc: number;
-        color2Class: {
-            red: 'danger';
-            yellow: 'warning';
-            green: 'success';
-        };
-        filter: {
-            mission: {
-                status: ('red' | 'green' | 'yellow')[];
-                participation: boolean[];
-                distance: number;
-                credits: number;
-                progress: number;
-            };
-            hospital: {
-                department: boolean[];
-                distance: number;
-                tax: number;
-                beds: number;
-                each: number;
-            };
-            cell: {
-                distance: number;
-                tax: number;
-                free: number;
-                each: number;
-            };
-            wlf: {
-                distance: number;
-                same: boolean[];
-                show: number;
-            };
-        };
-    },
-    {
-        setMissionList(_: unknown, group: number): void;
-        setHospitalList(_: unknown, group: number): void;
-        setCellList(_: unknown, group: number): void;
-        setSearch(search: string): void;
-        setSort(type: string): void;
-        alarm(missionId: number): void;
-        deleteVehicle(): void;
-        backalarm(): void;
-        switch_state(): void;
-        updateFilter(filter: string, value: unknown): void;
-        fms(url: string): void;
-        release(type: 'patient' | 'prisoner'): void;
-        loadAllHospitals(): void;
-    },
-    {
-        participated_missions: string[];
-        mission_head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        missionList: VehicleWindow['mission_own'];
-        missionListFiltered: VehicleWindow['mission_own'];
-        missionListSorted: VehicleWindow['mission_own'];
-        hospital_head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        hospitalList: VehicleWindow['own_hospitals'];
-        hospitalListFiltered: VehicleWindow['own_hospitals'];
-        hospitalListSorted: VehicleWindow['own_hospitals'];
-        cell_head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        cellList: VehicleWindow['own_cells'];
-        cellListFiltered: VehicleWindow['own_cells'];
-        cellListSorted: VehicleWindow['own_cells'];
-        wlf_head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        wlfListFiltered: VehicleWindow['wlfs'];
-        wlfListSorted: VehicleWindow['wlfs'];
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'vehicle-lightbox',
     components: {
         EnhancedTable: () =>

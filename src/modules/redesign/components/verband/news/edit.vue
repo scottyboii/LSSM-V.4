@@ -40,30 +40,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { RedesignSubComponent } from 'typings/modules/Redesign';
-import { SCEditor } from 'typings/SCEditor/SCEditor';
-import { VerbandNewsEditWindow } from '../../../parsers/verband/news/edit';
-
-type Component = RedesignSubComponent<
-    'news',
-    'verband/news/edit',
-    VerbandNewsEditWindow,
-    {
-        captionId: string;
-        contentId: string;
-        contentEditor: SCEditor | null;
-    },
-    { submit(): void }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'verband-news-edit',
     data() {
         return {

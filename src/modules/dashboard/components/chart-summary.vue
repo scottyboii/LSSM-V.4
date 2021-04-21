@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import Highcharts from 'highcharts';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
@@ -116,12 +116,7 @@ const exportingDefault = {
     fallbackToExportServer: false,
 };
 
-export default Vue.extend<
-    ChartSummary,
-    ChartSummaryMethods,
-    ChartSummaryComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'chart-summary',
     data() {
         return {

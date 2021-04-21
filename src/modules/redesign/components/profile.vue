@@ -528,7 +528,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
@@ -541,9 +541,7 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsSolidGauge from 'highcharts/modules/solid-gauge';
 import moment from 'moment';
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { InternalBuilding } from 'typings/Building';
-import { LayerGroup } from 'leaflet';
 import { MapVue } from 'typings/components/LeafletMap';
 // to seperate typings
 // eslint-disable-next-line no-duplicate-imports
@@ -555,64 +553,7 @@ import { TranslateResult } from 'vue-i18n';
 HighchartsMore(Highcharts);
 HighchartsSolidGauge(Highcharts);
 
-type DispatchCenter = {
-    [id: number]: Partial<ProfileWindow['buildings'][0]> & {
-        buildings: ProfileWindow['buildings'];
-        buildingTypes: {
-            [type: number]: number;
-            sum?: { [type: number]: number };
-        };
-    };
-};
-
-type Component = RedesignComponent<
-    'profile',
-    'profile',
-    ProfileWindow,
-    {
-        moment: typeof moment;
-        he: typeof he;
-        faEdit: IconDefinition;
-        faImage: IconDefinition;
-        faEnvelope: IconDefinition;
-        faGift: IconDefinition;
-        faMapMarkedAlt: IconDefinition;
-        awardsChartId: string;
-        maxAwards: number;
-        buildingTypes: {
-            [type: number]: InternalBuilding;
-        };
-        buildingTypesSorted: number[];
-        mapLayerGroups: { [id: number]: LayerGroup };
-        buildingMarkerIds: number[];
-        expandedDispatches: number[];
-        search: string;
-        hiddenFilters: number[];
-        show_map: boolean;
-    },
-    {
-        allianceIgnore(): void;
-        toggleFilter(type: number): void;
-        onlyFilter(type: number): void;
-    },
-    {
-        rank: string;
-        awardColors: {
-            bronze: number;
-            silver: number;
-            gold: number;
-        };
-        buildings: DispatchCenter;
-        dispatchCentersSorted: DispatchCenter[number][];
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'profile',
     components: {
         LeafletMap: () =>

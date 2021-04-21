@@ -17,14 +17,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import {
-    Hotkey,
-    HotkeyComputed,
-    HotkeyMethods,
-    HotkeyProps,
-} from 'typings/components/setting/Hotkey';
+import { Hotkey } from 'typings/components/setting/Hotkey';
 
 import Combokeys from 'combokeys';
 
@@ -38,7 +33,7 @@ const hotkeyMap = {
     [key: string]: string;
 };
 
-export default Vue.extend<Hotkey, HotkeyMethods, HotkeyComputed, HotkeyProps>({
+export default defineComponent({
     name: 'settings-hotkey',
     data() {
         return {

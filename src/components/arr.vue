@@ -55,36 +55,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy';
 import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { DefaultMethods, PropType } from 'vue/types/options';
-
-export default Vue.extend<
-    {
-        faCopy: IconDefinition;
-        faEdit: IconDefinition;
-        faTrash: IconDefinition;
-    },
-    DefaultMethods<Vue>,
-    {
-        style: string;
-    },
-    {
-        id: number;
-        title: string;
-        color: string;
-        bg_color: string;
-        type: 'arr' | 'vehicle_group';
-        editable: boolean;
-        accesskey?: string;
-        vehicles?: [number, string][];
-    }
->({
+export default defineComponent({
     name: 'arr',
     computed: {
         style() {

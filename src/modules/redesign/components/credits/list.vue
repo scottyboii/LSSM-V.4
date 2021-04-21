@@ -42,72 +42,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import moment from 'moment';
 
-import { CreditsListWindow } from '../../parsers/credits/list';
-import { RedesignLightboxVue } from 'typings/modules/Redesign';
-import VueI18n from 'vue-i18n';
-
-export default Vue.extend<
-    {
-        moment: typeof moment;
-        search: string;
-        sort: string;
-        sortDir: 'asc' | 'desc';
-        head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        startPage: number;
-        endPage: number;
-    },
-    {
-        $sm(
-            key: string,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        $smc(
-            key: string,
-            amount: number,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        setSort(type: string): void;
-        loadPrev(): void;
-        loadNext(): void;
-    },
-    {
-        page: number;
-        subtitle: string;
-    },
-    {
-        credits: CreditsListWindow;
-        url: string;
-        lightbox: RedesignLightboxVue<'credits/list', CreditsListWindow>;
-        $m(
-            key: string,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        $mc(
-            key: string,
-            amount: number,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        getSetting: <T>(setting: string, defaultValue: T) => Promise<T>;
-        setSetting: <T>(settingId: string, value: T) => Promise<void>;
-    }
->({
+export default defineComponent({
     name: 'credits-index',
     components: {
         EnhancedTable: () =>

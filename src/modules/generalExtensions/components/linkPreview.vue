@@ -127,7 +127,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import cloneDeep from 'lodash/cloneDeep';
 import { faBorderAll } from '@fortawesome/free-solid-svg-icons/faBorderAll';
@@ -139,19 +139,9 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 
 import { InternalBuilding } from 'typings/Building';
 import { InternalVehicle } from 'typings/Vehicle';
-import {
-    LinkPreview,
-    LinkPreviewComputed,
-    LinkPreviewMethods,
-    LinkPreviewProps,
-} from 'typings/modules/GeneralExtensions/LinkPreview';
+import { LinkPreview } from 'typings/modules/GeneralExtensions/LinkPreview';
 
-export default Vue.extend<
-    LinkPreview,
-    LinkPreviewMethods,
-    LinkPreviewComputed,
-    LinkPreviewProps
->({
+export default defineComponent({
     name: 'linkPreview',
     data() {
         return {

@@ -60,36 +60,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignComponent } from 'typings/modules/Redesign';
-import { VehicleGroupWindow } from '../parsers/vehicle_group';
-
-type Component = RedesignComponent<
-    'vehicle_group',
-    'vehicle_group',
-    VehicleGroupWindow,
-    {
-        faTrash: IconDefinition;
-        captionId: string;
-        colorId: string;
-        columnId: string;
-    },
-    {
-        submit(): void;
-        deleteGroup(): void;
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'vehicle_group-edit',
     data() {
         return {

@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { App, defineComponent } from 'vue';
 
 import cloneDeep from 'lodash/cloneDeep';
 import { faTerminal } from '@fortawesome/free-solid-svg-icons/faTerminal';
@@ -46,13 +46,8 @@ import { faTerminal } from '@fortawesome/free-solid-svg-icons/faTerminal';
 import parser from './assets/parser';
 import tokenizer from './assets/tokenizer';
 
-import { DefaultProps } from 'vue/types/options';
 import { Condition, ObjectTree, QueryTree } from 'typings/modules/LSSMAQL';
-import {
-    LSSMAQL,
-    LSSMAQLComputed,
-    LSSMAQLMethods,
-} from 'typings/modules/LSSMAQL/LSSMAQL';
+import { LSSMAQL, LSSMAQLComputed } from 'typings/modules/LSSMAQL/LSSMAQL';
 
 const comparison = (
     left: unknown,
@@ -84,7 +79,7 @@ const comparison = (
 const parse_filter = (
     filter: Condition['left'] | Condition['right'],
     tree: ObjectTree,
-    vm: Vue
+    vm: App
 ) => {
     const [side] = filter;
     const oneside =
@@ -134,7 +129,7 @@ const parse_filter = (
     return sideObject;
 };
 
-const resolve_object = (tree: QueryTree, vm: Vue): unknown => {
+const resolve_object = (tree: QueryTree, vm: App): unknown => {
     if (!tree) return null;
     if (tree.type === 'object') {
         let object =
@@ -172,12 +167,7 @@ const resolve_object = (tree: QueryTree, vm: Vue): unknown => {
     return null;
 };
 
-export default Vue.extend<
-    LSSMAQL,
-    LSSMAQLMethods,
-    LSSMAQLComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'lssmaql',
     components: {
         Lightbox: () =>

@@ -140,18 +140,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons/faSyncAlt';
 
-import { RedesignLightbox, RedesignParser } from 'typings/modules/Redesign';
+import { RedesignParser } from 'typings/modules/Redesign';
 
-export default Vue.extend<
-    RedesignLightbox['Data'],
-    RedesignLightbox['Methods'],
-    RedesignLightbox['Computed'],
-    RedesignLightbox['Props']
->({
+export default defineComponent({
     name: 'redesign-lightbox',
     components: {
         Lightbox: () =>

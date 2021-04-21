@@ -39,26 +39,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { faCompress } from '@fortawesome/free-solid-svg-icons/faCompress';
 import { faExpand } from '@fortawesome/free-solid-svg-icons/faExpand';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
-import { DefaultComputed } from 'vue/types/options';
-import {
-    LightboxData,
-    LightboxMethods,
-    LightboxProps,
-} from '../../typings/components/Lightbox';
-
-export default Vue.extend<
-    LightboxData,
-    LightboxMethods,
-    DefaultComputed,
-    LightboxProps
->({
+export default defineComponent({
     name: 'lightbox',
     data() {
         return {

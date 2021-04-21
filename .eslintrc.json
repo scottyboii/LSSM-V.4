@@ -70,6 +70,7 @@
         }],
         "template-curly-spacing": "error",
         "vue/no-unused-refs": "warn",
+        "vue/no-v-for-template-key": "off",
         "yoda": ["error", "never", {
             "exceptRange": true
         }]

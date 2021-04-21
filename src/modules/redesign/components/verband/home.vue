@@ -88,36 +88,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
 import { faImage } from '@fortawesome/free-solid-svg-icons/faImage';
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignSubComponent } from 'typings/modules/Redesign';
-import { VerbandHomeWindow } from '../../parsers/verband/home';
-
-type Component = RedesignSubComponent<
-    'home',
-    'verband/home',
-    VerbandHomeWindow,
-    {
-        faEdit: IconDefinition;
-        faImage: IconDefinition;
-    },
-    {
-        leave(): void;
-        apply(): void;
-        unapply(): void;
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'verband-home',
     data() {
         return {

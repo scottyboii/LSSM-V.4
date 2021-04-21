@@ -183,8 +183,9 @@
                                 'finance',
                                 'schooling',
                             ]"
+                            :key="`${user.id}_${right}`"
                         >
-                            <br :key="`${user.id}_${right}_br`" />
+                            <br />
                             <a
                                 @click="
                                     toggleRight(
@@ -199,7 +200,6 @@
                                         user.edit[right] ? 'danger' : 'success'
                                     }`
                                 "
-                                :key="`${user.id}_${right}_btn`"
                             >
                                 {{
                                     lightbox.$sm(
@@ -223,71 +223,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignSubComponent } from 'typings/modules/Redesign';
-import { VerbandMitgliederWindow } from '../../parsers/verband/mitglieder';
-
-type Component = RedesignSubComponent<
-    'mitglieder',
-    'verband/mitglieder',
-    VerbandMitgliederWindow,
-    {
-        faEdit: IconDefinition;
-        search: string;
-        sort: string;
-        sortDir: 'asc' | 'desc';
-        head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        startPage: number;
-        endPage: number;
-        caption_editing: number[];
-        rights_editing: number[];
-    },
-    {
-        setSort(type: string): void;
-        loadPrev(): void;
-        loadNext(): void;
-        setUrlSearch(): void;
-        loadCaptionHolder(user_id: number): void;
-        saveCaption(user_id: number): void;
-        applyDiscount(user_id: number, amount: number): void;
-        toggleRight(
-            user_id: number,
-            right:
-                | 'admin'
-                | 'coadmin'
-                | 'sprechwunsch_admin'
-                | 'aufsichtsrat'
-                | 'finance'
-                | 'schooling',
-            new_state: 0 | 1
-        ): void;
-        kick(user_id: number, username: string): void;
-        toggleEdit(user_id: number): void;
-    },
-    {
-        urlSearch: string;
-        page: number;
-        subtitle: string;
-        usersFiltered: VerbandMitgliederWindow['users'];
-        usersSorted: VerbandMitgliederWindow['users'];
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'verband-mitglieder',
     components: {
         EnhancedTable: () =>

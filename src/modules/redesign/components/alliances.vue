@@ -78,49 +78,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { AllianceListWindow } from '../parsers/alliances';
-import { RedesignComponent } from 'typings/modules/Redesign';
-
-type Component = RedesignComponent<
-    'alliances',
-    'alliances',
-    AllianceListWindow,
-    {
-        search: string;
-        sort: string;
-        sortDir: 'asc' | 'desc';
-        head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        startPage: number;
-        endPage: number;
-    },
-    {
-        setSort(type: string): void;
-        loadPrev(): void;
-        loadNext(): void;
-        setUrlSearch(): void;
-    },
-    {
-        urlSearch: string;
-        page: number;
-        subtitle: string;
-        alliancesFiltered: AllianceListWindow['alliances'];
-        alliancesSorted: AllianceListWindow['alliances'];
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'alliances',
     components: {
         EnhancedTable: () =>

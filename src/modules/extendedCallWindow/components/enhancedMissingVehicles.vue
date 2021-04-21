@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons/faAngleDoubleDown';
 import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons/faAngleDoubleLeft';
@@ -125,19 +125,7 @@ import { faExpandAlt } from '@fortawesome/free-solid-svg-icons/faExpandAlt';
 import { faParagraph } from '@fortawesome/free-solid-svg-icons/faParagraph';
 import { faTable } from '@fortawesome/free-solid-svg-icons/faTable';
 
-import {
-    EnhancedMissingVehicles,
-    EnhancedMissingVehiclesComputed,
-    EnhancedMissingVehiclesMethods,
-    EnhancedMissingVehiclesProps,
-} from 'typings/modules/ExtendedCallWindow/EnhancedMissingVehicles';
-
-export default Vue.extend<
-    EnhancedMissingVehicles,
-    EnhancedMissingVehiclesMethods,
-    EnhancedMissingVehiclesComputed,
-    EnhancedMissingVehiclesProps
->({
+export default defineComponent({
     name: 'enhancedMissingVehicles',
     components: {
         EnhancedMissingVehiclesTable: () =>

@@ -67,51 +67,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
 import { faUserSlash } from '@fortawesome/free-solid-svg-icons/faUserSlash';
 
-import { FreundeWindow } from '../parsers/freunde';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignComponent } from 'typings/modules/Redesign';
-
-type Component = RedesignComponent<
-    'friends',
-    'freunde',
-    FreundeWindow,
-    {
-        faEdit: IconDefinition;
-        faUserSlash: IconDefinition;
-        notes_editing: number[];
-        head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        search: string;
-        sort: string;
-        sortDir: 'asc' | 'desc';
-    },
-    {
-        setSort(type: string): void;
-        openNoteEditor(friend_id: number): void;
-        saveNote(friend_id: number): void;
-        removeFriend(friend_id: number): void;
-    },
-    {
-        friendsFiltered: FreundeWindow['friends'];
-        friendsSorted: FreundeWindow['friends'];
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'freunde',
     components: {
         EnhancedTable: () =>

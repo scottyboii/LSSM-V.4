@@ -47,17 +47,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultMethods, DefaultProps } from 'vue/types/options';
-import { LSSMV4Computed, LSSMV4Data } from '../typings/LSSMV4';
-
-export default Vue.extend<
-    LSSMV4Data,
-    DefaultMethods<Vue>,
-    LSSMV4Computed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'LSSMV4',
     components: {},
     data() {

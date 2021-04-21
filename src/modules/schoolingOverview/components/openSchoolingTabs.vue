@@ -36,22 +36,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultProps } from 'vue/types/options';
 import {
     OpenSchooling,
     OpenSchoolingTabs,
-    OpenSchoolingTabsComputed,
-    OpenSchoolingTabsMethods,
 } from 'typings/modules/SchoolingOverview/OpenSchoolingTabs';
 
-export default Vue.extend<
-    OpenSchoolingTabs,
-    OpenSchoolingTabsMethods,
-    OpenSchoolingTabsComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'openSchoolingTabs',
     components: {
         EnhancedTable: () =>

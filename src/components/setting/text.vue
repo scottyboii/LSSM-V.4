@@ -14,20 +14,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultData, DefaultMethods } from 'vue/types/options';
-import {
-    TextComputed,
-    TextProps,
-} from '../../../typings/components/setting/Text';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    TextComputed,
-    TextProps
->({
+export default defineComponent({
     name: 'settings-text',
     props: {
         name: {

@@ -17,29 +17,16 @@
                         `modules.${moduleId}.settings.${settingId}.description`
             "
             v-html="description"
-        >
-            <br />
-        </span>
+        ></span>
+        <br />
         <slot v-if="!beforeDescription"></slot>
     </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { SettingProps } from '../../typings/components/Setting';
-import {
-    DefaultComputed,
-    DefaultData,
-    DefaultMethods,
-} from 'vue/types/options';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    DefaultComputed,
-    SettingProps
->({
+export default defineComponent({
     name: 'setting',
     props: {
         moduleId: {

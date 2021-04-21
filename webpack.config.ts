@@ -8,10 +8,6 @@ export default {
     target: 'web',
     bail: true,
     resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.runtime.esm.js',
-            'vue.esm.js$': 'vue/dist/vue.runtime.esm.js',
-        },
         extensions: ['.tsx', '.ts', '.js', '.vue', '.json'],
         // modules: ['node_modules', path.resolve(__dirname, 'src')],
     },

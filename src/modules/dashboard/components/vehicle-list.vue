@@ -76,25 +76,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons/faPencilAlt';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 
 import { InternalVehicle } from 'typings/Vehicle';
-import {
-    VehicleList,
-    VehicleListComputed,
-    VehicleListMethods,
-    VehicleListProps,
-} from '../../../../typings/modules/Dashboard/VehicleList';
+import { VehicleList } from '../../../../typings/modules/Dashboard/VehicleList';
 
-export default Vue.extend<
-    VehicleList,
-    VehicleListMethods,
-    VehicleListComputed,
-    VehicleListProps
->({
+export default defineComponent({
     name: 'vehicle-list',
     components: {
         Lightbox: () =>

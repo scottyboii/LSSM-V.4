@@ -35,17 +35,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DashboardMethods } from '../../../typings/modules/Dashboard/Dashboard';
-import { DefaultComputed, DefaultData, DefaultProps } from 'vue/types/options';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DashboardMethods,
-    DefaultComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'dashboard',
     components: {
         DispatchcenterView: () =>

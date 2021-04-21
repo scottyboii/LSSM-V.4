@@ -57,33 +57,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { RedesignSubComponent } from 'typings/modules/Redesign';
-import { SCEditor } from 'typings/SCEditor/SCEditor';
-import { VerbandEditTextWindow } from '../../parsers/verband/edit_text';
-
-type Component = RedesignSubComponent<
-    'alliance',
-    'verband/edit_text',
-    VerbandEditTextWindow,
-    {
-        textId: string;
-        rulesId: string;
-        headerId: string;
-        webhookId: string;
-        textEditor: SCEditor | null;
-        rulesEditor: SCEditor | null;
-    },
-    { submit(): void }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'verband-edit-text',
     data() {
         return {

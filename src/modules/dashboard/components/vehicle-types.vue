@@ -84,27 +84,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faCarSide } from '@fortawesome/free-solid-svg-icons/faCarSide';
 
 import vehicleList from './vehicle-list.vue';
 
-import { DefaultProps } from 'vue/types/options';
 import { InternalVehicle, Vehicle } from '../../../../typings/Vehicle';
 import {
     TypeList,
     VehicleTypes,
-    VehicleTypesComputed,
-    VehicleTypesMethods,
 } from '../../../../typings/modules/Dashboard/VehicleTypes';
 
-export default Vue.extend<
-    VehicleTypes,
-    VehicleTypesMethods,
-    VehicleTypesComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'vehicle-types',
     components: {
         EnhancedTable: () =>

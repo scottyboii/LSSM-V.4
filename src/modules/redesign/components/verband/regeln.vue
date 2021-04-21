@@ -14,29 +14,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
 
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignSubComponent } from 'typings/modules/Redesign';
-import { VerbandRegelnWindow } from '../../parsers/verband/regeln';
-
-type Component = RedesignSubComponent<
-    'rules',
-    'verband/regeln',
-    VerbandRegelnWindow,
-    {
-        faEdit: IconDefinition;
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'verband-regeln',
     data() {
         return {

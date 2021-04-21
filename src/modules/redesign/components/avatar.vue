@@ -23,37 +23,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
-import { AvatarWindow } from '../parsers/avatar';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignComponent } from 'typings/modules/Redesign';
-
-type Component = RedesignComponent<
-    'profile',
-    'avatar',
-    AvatarWindow,
-    {
-        faTrash: IconDefinition;
-        image: string;
-        imageFile: File | null;
-        input: HTMLInputElement;
-    },
-    {
-        submit(): void;
-        deleteAvatar(): void;
-        select(): void;
-    }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'avatar-edit',
     data() {
         const input = document.createElement('input');

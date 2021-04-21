@@ -17,20 +17,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultData, DefaultMethods } from 'vue/types/options';
-import {
-    NumberComputed,
-    NumberProps,
-} from '../../../typings/components/setting/Number';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    NumberComputed,
-    NumberProps
->({
+export default defineComponent({
     name: 'settings-number',
     props: {
         name: {

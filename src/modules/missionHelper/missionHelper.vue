@@ -440,7 +440,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import cloneDeep from 'lodash/cloneDeep';
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons/faAngleDoubleDown';
@@ -452,21 +452,13 @@ import { faSubscript } from '@fortawesome/free-solid-svg-icons/faSubscript';
 import { faSuperscript } from '@fortawesome/free-solid-svg-icons/faSuperscript';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons/faSyncAlt';
 
-import { DefaultProps } from 'vue/types/options';
 import { Mission } from 'typings/Mission';
 import {
     MissionHelper,
-    MissionHelperComputed,
-    MissionHelperMethods,
     VehicleRequirements,
 } from 'typings/modules/MissionHelper';
 
-export default Vue.extend<
-    MissionHelper,
-    MissionHelperMethods,
-    MissionHelperComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'missionHelper',
     data() {
         return {

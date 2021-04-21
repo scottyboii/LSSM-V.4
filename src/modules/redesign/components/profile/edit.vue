@@ -16,26 +16,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultData } from 'vue/types/options';
-import { ProfileEditWindow } from '../../parsers/profile/edit';
-import { RedesignComponent } from 'typings/modules/Redesign';
-
-type Component = RedesignComponent<
-    'profile',
-    'profile/edit',
-    ProfileEditWindow,
-    DefaultData<Vue>,
-    { submit(): void }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'profile-edit',
     data() {
         return {};

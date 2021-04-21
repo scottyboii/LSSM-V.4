@@ -119,24 +119,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons/faPencilAlt';
 
+import { BuildingList } from '../../../../typings/modules/Dashboard/BuildingList';
 import { Building, InternalBuilding } from 'typings/Building';
-import {
-    BuildingList,
-    BuildingListComputed,
-    BuildingListMethods,
-    BuildingListProps,
-} from '../../../../typings/modules/Dashboard/BuildingList';
 
-export default Vue.extend<
-    BuildingList,
-    BuildingListMethods,
-    BuildingListComputed,
-    BuildingListProps
->({
+export default defineComponent({
     name: 'building-list',
     components: {
         Lightbox: () =>

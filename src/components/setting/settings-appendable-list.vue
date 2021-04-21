@@ -128,7 +128,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import cloneDeep from 'lodash/cloneDeep';
 import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons/faLongArrowAltDown';
@@ -137,19 +137,7 @@ import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faUndoAlt } from '@fortawesome/free-solid-svg-icons/faUndoAlt';
 
-import {
-    AppendableList,
-    AppendableListComputed,
-    AppendableListMethods,
-    AppendableListProps,
-} from 'typings/components/setting/AppendableList';
-
-export default Vue.extend<
-    AppendableList,
-    AppendableListMethods,
-    AppendableListComputed,
-    AppendableListProps
->({
+export default defineComponent({
     name: 'settings-appendable-list',
     components: {
         SettingsToggle: () =>

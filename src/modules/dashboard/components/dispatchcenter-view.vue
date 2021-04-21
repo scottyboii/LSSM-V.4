@@ -343,23 +343,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultProps } from 'vue/types/options';
+import { DispatchcenterView } from 'typings/modules/Dashboard/DispatchcenterView';
 import { Vehicle } from 'typings/Vehicle';
 import { Building, InternalBuilding } from 'typings/Building';
-import {
-    DispatchcenterView,
-    DispatchcenterViewComputed,
-    DispatchcenterViewMethods,
-} from 'typings/modules/Dashboard/DispatchcenterView';
 
-export default Vue.extend<
-    DispatchcenterView,
-    DispatchcenterViewMethods,
-    DispatchcenterViewComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'dispatchcenter-view',
     components: {
         VSelect: () =>
@@ -765,10 +755,10 @@ export default Vue.extend<
 		width: 100%
 		margin-right: 1rem
 
-		::v-deep .vs__dropdown-toggle
+		:v-deep(.vs__dropdown-toggle)
 			padding: 0 0 6.4px 0
 
-		::v-deep .vs-pagination
+		:v-deep(.vs-pagination)
 			display: flex
 
 			.btn
@@ -788,7 +778,7 @@ export default Vue.extend<
 		position: absolute
 		right: 1rem
 
-	::v-deep [id$="-resizeBottomRight"]
+	:v-deep([id$="-resizeBottomRight"])
 		cursor: nwse-resize !important
 		width: 1em !important
 		height: unset !important

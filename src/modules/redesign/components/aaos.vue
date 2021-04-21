@@ -142,45 +142,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { faFileExport } from '@fortawesome/free-solid-svg-icons/faFileExport';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
-import { AAOsWindow } from '../parsers/aaos';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RedesignComponent } from 'typings/modules/Redesign';
-
-type Component = RedesignComponent<
-    'aaos',
-    'aaos',
-    AAOsWindow,
-    {
-        faPlus: IconDefinition;
-        faFileExport: IconDefinition;
-        faTrash: IconDefinition;
-    },
-    {
-        edit(id: number, type: 'arr' | 'vehicle_group'): void;
-        copy(id: number, type: 'arr' | 'vehicle_group'): void;
-        deleteARR(
-            id: number,
-            type: 'arr' | 'vehicle_group',
-            category: string,
-            row: '0' | '1' | '2' | '3' | '4' | '5' | '6'
-        ): void;
-        deleteAll(): void;
-    },
-    { categories: AAOsWindow['categories'] }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'aaos',
     components: {
         ARR: () =>

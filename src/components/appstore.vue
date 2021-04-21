@@ -74,24 +74,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import isEqual from 'lodash/isEqual';
 
-import { DefaultProps } from 'vue/types/options';
-import { Modules } from '../../typings/Module';
-import {
-    AppstoreComputed,
-    AppstoreData,
-    AppstoreMethods,
-} from '../../typings/components/Appstore';
-
-export default Vue.extend<
-    AppstoreData,
-    AppstoreMethods,
-    AppstoreComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'appstore',
     components: {
         Lightbox: () =>

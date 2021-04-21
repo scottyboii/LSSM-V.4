@@ -262,30 +262,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import cloneDeep from 'lodash/cloneDeep';
 import { faHistory } from '@fortawesome/free-solid-svg-icons/faHistory';
 import isEqual from 'lodash/isEqual';
 
-import { DefaultProps } from 'vue/types/options';
 import {
     AppendableList,
     ModuleSettings,
     Setting as SettingType,
 } from '../../typings/Setting';
-import {
-    SettingsComputed,
-    SettingsData,
-    SettingsMethods,
-} from '../../typings/components/Settings';
 
-export default Vue.extend<
-    SettingsData,
-    SettingsMethods,
-    SettingsComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'settings',
     components: {
         SettingsAppendableList: () =>

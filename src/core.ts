@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 
 import * as Tabs from 'vue-slim-tabs';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import Notifications from 'vue-notification';
+import Notifications from '@kyvg/vue3-notification';
 import ToggleButton from 'vue-js-toggle-button';
 import VueJSModal from 'vue-js-modal';
 

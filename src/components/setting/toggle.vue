@@ -10,20 +10,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultData, DefaultMethods } from 'vue/types/options';
-import {
-    ToggleComputed,
-    ToggleProps,
-} from '../../../typings/components/setting/Toggle';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    ToggleComputed,
-    ToggleProps
->({
+export default defineComponent({
     name: 'settings-toggle',
     props: {
         name: {

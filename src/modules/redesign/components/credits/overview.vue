@@ -38,73 +38,20 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
 import moment from 'moment';
 
-import { CreditsOverviewWindow } from '../../parsers/credits/overview';
 // to seperate typings
 // eslint-disable-next-line no-duplicate-imports
 import { Options } from 'highcharts';
-import { RedesignLightboxVue } from 'typings/modules/Redesign';
-import VueI18n, { TranslateResult } from 'vue-i18n';
+import { TranslateResult } from 'vue-i18n';
 
 HighchartsMore(Highcharts);
 
-export default Vue.extend<
-    {
-        moment: typeof moment;
-        head: {
-            [key: string]: {
-                title: string;
-                noSort: true;
-            };
-        };
-        chartId: string;
-    },
-    {
-        $sm(
-            key: string,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        $smc(
-            key: string,
-            amount: number,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-    },
-    {
-        dates: string[];
-    },
-    {
-        data: CreditsOverviewWindow;
-        lightbox: RedesignLightboxVue<
-            'credits/overview',
-            CreditsOverviewWindow
-        >;
-        $m(
-            key: string,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        $mc(
-            key: string,
-            amount: number,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        getSetting: <T>(setting: string, defaultValue: T) => Promise<T>;
-        setSetting: <T>(settingId: string, value: T) => Promise<void>;
-    }
->({
+export default defineComponent({
     name: 'credits-overview',
     components: {
         EnhancedTable: () =>

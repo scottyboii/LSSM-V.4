@@ -82,14 +82,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import cloneDeep from 'lodash/cloneDeep';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons/faBuilding';
 
 import buildingList from './building-list.vue';
 
-import { DefaultProps } from 'vue/types/options';
 import {
     Building,
     BuildingCategory,
@@ -98,17 +97,10 @@ import {
 } from 'typings/Building';
 import {
     BuildingTypes,
-    BuildingTypesComputed,
-    BuildingTypesMethods,
     buildingWithExtension,
 } from 'typings/modules/Dashboard/BuildingTypes';
 
-export default Vue.extend<
-    BuildingTypes,
-    BuildingTypesMethods,
-    BuildingTypesComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'building-types',
     components: {
         EnhancedTable: () =>

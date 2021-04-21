@@ -219,11 +219,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import cloneDeep from 'lodash/cloneDeep';
 
-import { DefaultProps } from 'vue/types/options';
+import { Overview } from '../../../typings/modules/Overview';
 import { Schooling } from 'typings/Schooling';
 import {
     BuildingCategory,
@@ -235,18 +235,8 @@ import {
     ResolvedVehicleCategory,
     VehicleCategory,
 } from '../../../typings/Vehicle';
-import {
-    Overview,
-    OverviewComputed,
-    OverviewMethods,
-} from '../../../typings/modules/Overview';
 
-export default Vue.extend<
-    Overview,
-    OverviewMethods,
-    OverviewComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'overview',
     components: {
         Lightbox: () =>

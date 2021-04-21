@@ -70,22 +70,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import { OpenSchoolings } from 'typings/modules/SchoolingOverview/main';
-import {
-    SchoolingOverview,
-    SchoolingOverviewComputed,
-    SchoolingOverviewMethods,
-    SchoolingOverviewProps,
-} from 'typings/modules/SchoolingOverview/SchoolingOverview';
+import { SchoolingOverview } from 'typings/modules/SchoolingOverview/SchoolingOverview';
 
-export default Vue.extend<
-    SchoolingOverview,
-    SchoolingOverviewMethods,
-    SchoolingOverviewComputed,
-    SchoolingOverviewProps
->({
+export default defineComponent({
     name: 'schoolingsOverview',
     components: {
         EnhancedTable: () =>

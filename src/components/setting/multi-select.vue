@@ -16,20 +16,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultData, DefaultMethods } from 'vue/types/options';
-import {
-    MultiSelectComputed,
-    MultiSelectProps,
-} from 'typings/components/setting/MultiSelect';
+import { MultiSelectComputed } from 'typings/components/setting/MultiSelect';
 
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    MultiSelectComputed,
-    MultiSelectProps
->({
+export default defineComponent({
     name: 'settings-multi-select',
     components: {
         VSelect: () =>

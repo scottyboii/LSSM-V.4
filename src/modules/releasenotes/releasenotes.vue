@@ -30,25 +30,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import coerce from 'semver/functions/coerce';
 import moment from 'moment';
 import semverLt from 'semver/functions/lt';
 
-import { ReleaseNoteProps } from 'typings/modules/Releasenotes';
-import {
-    DefaultComputed,
-    DefaultData,
-    DefaultMethods,
-} from 'vue/types/options';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    DefaultComputed,
-    ReleaseNoteProps
->({
+export default defineComponent({
     name: 'releasenotes',
     data() {
         return {

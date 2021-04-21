@@ -3,16 +3,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import {
-    MapComputed,
-    MapData,
-    MapMethods,
-    MapProps,
-} from '../../typings/components/LeafletMap';
-
-export default Vue.extend<MapData, MapMethods, MapComputed, MapProps>({
+export default defineComponent({
     name: 'leaflet-map',
     data() {
         return {

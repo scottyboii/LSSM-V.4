@@ -60,21 +60,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { EnhancedMissingVehiclesTableProps } from 'typings/modules/ExtendedCallWindow/EnhancedMissingVehiclesTable';
-import {
-    DefaultComputed,
-    DefaultData,
-    DefaultMethods,
-} from 'vue/types/options';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    DefaultComputed,
-    EnhancedMissingVehiclesTableProps
->({
+export default defineComponent({
     name: 'enhancedMissingVehiclesTable',
     components: {
         EnhancedTable: () =>

@@ -78,21 +78,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import {
-    SchoolingSummary,
-    SchoolingSummaryComputed,
-    SchoolingSummaryMethods,
-    SchoolingSummaryProps,
-} from 'typings/modules/ExtendedBuilding/schoolingSummary';
+import { SchoolingSummary } from 'typings/modules/ExtendedBuilding/schoolingSummary';
 
-export default Vue.extend<
-    SchoolingSummary,
-    SchoolingSummaryMethods,
-    SchoolingSummaryComputed,
-    SchoolingSummaryProps
->({
+export default defineComponent({
     name: 'schoolingSummary',
     components: {
         EnhancedTable: () =>

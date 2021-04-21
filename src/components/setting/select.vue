@@ -15,17 +15,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultData, DefaultMethods } from 'vue/types/options';
-import { SelectComputed, SelectProps } from 'typings/components/setting/Select';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    SelectComputed,
-    SelectProps
->({
+export default defineComponent({
     name: 'settings-select',
     components: {
         VSelect: () =>

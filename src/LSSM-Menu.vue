@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import Appstore from './components/appstore.vue';
 import LibraryOverview from './components/libraryOverview.vue';
@@ -93,19 +93,7 @@ import lssmLogo from './img/lssm_logo';
 import { mapState } from 'vuex';
 import Settings from './components/settings.vue';
 
-import { DefaultProps } from 'vue/types/options';
-import {
-    lssmMenuComputed,
-    lssmMenuData,
-    lssmMenuMethods,
-} from '../typings/LSSM-Menu';
-
-export default Vue.extend<
-    lssmMenuData,
-    lssmMenuMethods,
-    lssmMenuComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'lssm-menu',
     components: {},
     data() {

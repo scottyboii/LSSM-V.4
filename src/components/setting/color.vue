@@ -14,20 +14,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import {
-    ColorComputed,
-    ColorProps,
-} from '../../../typings/components/setting/Color';
-import { DefaultData, DefaultMethods } from 'vue/types/options';
-
-export default Vue.extend<
-    DefaultData<Vue>,
-    DefaultMethods<Vue>,
-    ColorComputed,
-    ColorProps
->({
+export default defineComponent({
     name: 'settings-color',
     props: {
         name: {

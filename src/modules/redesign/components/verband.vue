@@ -99,48 +99,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultData } from 'vue/types/options';
-import { RedesignComponent } from 'typings/modules/Redesign';
-import { VerbandHomeWindow } from '../parsers/verband/home';
-import VueI18n from 'vue-i18n';
-
-interface Link {
-    href: string;
-    text: string;
-}
-
-type Component = RedesignComponent<
-    'data',
-    'verband/home',
-    VerbandHomeWindow,
-    DefaultData<Vue>,
-    {
-        $m(
-            key: string,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        $mc(
-            key: string,
-            amount: number,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-    },
-    { nav: Link[] },
-    { type: string }
->;
-
-export default Vue.extend<
-    Component['Data'],
-    Component['Methods'],
-    Component['Computed'],
-    Component['Props']
->({
+export default defineComponent({
     name: 'verband-lightbox',
     components: {
         VerbandEditName: () =>

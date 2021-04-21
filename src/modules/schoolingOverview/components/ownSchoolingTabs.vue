@@ -39,22 +39,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-import { DefaultProps } from 'vue/types/options';
 import {
     OwnSchooling,
     OwnSchoolingTabs,
-    OwnSchoolingTabsComputed,
-    OwnSchoolingTabsMethods,
 } from 'typings/modules/SchoolingOverview/OwnSchoolingTabs';
 
-export default Vue.extend<
-    OwnSchoolingTabs,
-    OwnSchoolingTabsMethods,
-    OwnSchoolingTabsComputed,
-    DefaultProps
->({
+export default defineComponent({
     name: 'ownSchoolingTabs',
     components: {
         EnhancedTable: () =>

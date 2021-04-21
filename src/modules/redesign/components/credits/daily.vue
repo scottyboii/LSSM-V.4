@@ -146,77 +146,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 import moment from 'moment';
 
-import { CreditsDailyWindow } from '../../parsers/credits/daily';
-import { RedesignLightboxVue } from 'typings/modules/Redesign';
-import VueI18n from 'vue-i18n';
-
-export default Vue.extend<
-    {
-        moment: typeof moment;
-        search: string;
-        sort: string;
-        sortDir: 'asc' | 'desc';
-        head: {
-            [key: string]: {
-                title: string;
-                noSort?: boolean;
-            };
-        };
-        filter: {
-            total: {
-                min: number;
-                max: number;
-            };
-        };
-    },
-    {
-        $sm(
-            key: string,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        $smc(
-            key: string,
-            amount: number,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        setSort(type: string): void;
-        updateFilter(filter: string, value: unknown): void;
-    },
-    {
-        page: number;
-        entriesFiltered: CreditsDailyWindow['entries'];
-        entriesSorted: CreditsDailyWindow['entries'];
-        sum: { plus: number; minus: number; total: number };
-    },
-    {
-        credits: CreditsDailyWindow;
-        url: string;
-        lightbox: RedesignLightboxVue<'credits/daily', CreditsDailyWindow>;
-        $m(
-            key: string,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        $mc(
-            key: string,
-            amount: number,
-            args?: {
-                [key: string]: unknown;
-            }
-        ): VueI18n.TranslateResult;
-        getSetting: <T>(setting: string, defaultValue: T) => Promise<T>;
-        setSetting: <T>(settingId: string, value: T) => Promise<void>;
-    }
->({
+export default defineComponent({
     name: 'credits-daily',
     components: {
         EnhancedTable: () =>
