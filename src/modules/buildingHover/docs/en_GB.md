@@ -23,4 +23,4 @@ The following information is included:
 
 This is how it looks for example at an ambulance station:
 
-![An example ambulance station](/v4/docs/assets/buildingHover/img/exampleeb_GB.png)
+![An example ambulance station](/v4/docs/assets/buildingHover/img/exampleen_GB.png)
