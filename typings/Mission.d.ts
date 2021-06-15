@@ -19,6 +19,7 @@ interface Additional {
     need_helicopter_bucket_only_if_present?: boolean;
     need_elw_police_only_if_present?: boolean;
     need_police_horse_only_if_present?: boolean;
+    max_civil_patrol_replacing_police_cars?: number;
 
     // Guard missions
     duration?: number;
@@ -46,6 +47,10 @@ interface Additional {
     patient_uk_code_possible?: string[]; // en_GB only
     patient_us_code_possible?: string[]; // en_US only
     patient_it_code_possible?: string[]; // it_IT only
+
+    // seasonal missions
+    date_start: string;
+    date_end: string;
 
     // General:
     [key: string]:
@@ -86,6 +91,7 @@ interface Chances {
     boats?: number; // de_DE: Boote
     elw_airport?: number;
     elw_police?: number;
+    civil_patrolcar?: number;
 
     // Patients
     nef?: number;
@@ -99,6 +105,9 @@ interface Chances {
 }
 
 interface Prerequisites {
+    main_building: number;
+    main_building_extensions?: Record<string, number>;
+
     fire_stations?: number;
     commerce_police_stations?: number;
     max_police_stations?: number;
@@ -122,9 +131,14 @@ interface Prerequisites {
     water_police_count?: number;
     dea_count?: number;
     atf_count?: number;
+    criminal_investigation_count?: number;
+    thw_bergung_count?: number;
+    thw_zugtrupp_count?: number;
+    thw_fg_raeumen_count?: number;
+    thw_gkw_count?: number;
 
     // General:
-    [key: string]: number | undefined;
+    [key: string]: number | Record<string, number> | undefined;
 }
 
 interface Requirements {
@@ -201,6 +215,7 @@ interface Requirements {
     hazard_response_secondary?: number;
     emergency_welfare?: number;
     atv_carrier?: number;
+    civil_patrolcar?: number;
 
     // General:
     [key: string]: number | undefined;

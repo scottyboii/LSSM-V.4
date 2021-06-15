@@ -3,7 +3,7 @@
         <h1>{{ lightbox.$sm('title') }}</h1>
         <enhanced-table
             :head="head"
-            :table-attrs="{ class: 'table' }"
+            :table-attrs="{ class: 'table table-striped' }"
             :search="search"
             :search-placeholder="$t('search')"
             @search="s => (search = s)"
@@ -277,17 +277,6 @@ export default Vue.extend<
         };
     },
     mounted() {
-        this.$el.addEventListener('click', e => {
-            const target = (e.target as HTMLElement)?.closest<
-                HTMLAnchorElement | HTMLButtonElement
-            >('a, button');
-            const href = target?.getAttribute('href');
-            if (!target || !href) return;
-            e.preventDefault();
-            if (target.hasAttribute('lightbox-open'))
-                return window.lightboxOpen(href);
-            else this.$set(this.lightbox, 'src', href);
-        });
         this.getSetting(`sort`, this.sort).then(sort => (this.sort = sort));
         this.getSetting(`sortDir`, this.sortDir).then(
             dir => (this.sortDir = dir)

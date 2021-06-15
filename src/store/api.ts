@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import { ActionStoreParams } from 'typings/store/Actions';
 import { APIActionStoreParams } from '../../typings/store/api/Actions';
 import { Mission } from 'typings/Mission';
@@ -121,10 +123,10 @@ const get_api_values = async <API extends StorageAPIKey>(
         stored = (await get_from_broadcast<API>(key, dispatch)) ?? stored;
     if (
         !state.currentlyUpdating.includes(key) &&
-        !preventUpdateFetch &&
         (!stored.value ||
             !Object.values(stored.value).length ||
-            stored.lastUpdate < new Date().getTime() - API_MIN_UPDATE)
+            (stored.lastUpdate < new Date().getTime() - API_MIN_UPDATE &&
+                !preventUpdateFetch))
     ) {
         commit('startedUpdating', key);
         stored = {
@@ -167,12 +169,30 @@ const set_api_storage = <API extends StorageAPIKey>(
             },
             { root: true }
         ).then();
+        if (key === 'vehicles') {
+            updateVehicleStates(
+                value as StorageGetterReturn<'vehicles'>['value'],
+                commit
+            );
+        }
     } catch {
         localStorage.setItem(
             STORAGE_DISABLED_KEY,
             JSON.stringify([...disabled, key])
         );
     }
+};
+
+const updateVehicleStates = (
+    vehicles: StorageGetterReturn<'vehicles'>['value'],
+    commit: APIActionStoreParams['commit']
+) => {
+    const states: Record<number, number> = {};
+    vehicles?.forEach(({ fms_show }) => {
+        if (!states.hasOwnProperty(fms_show)) states[fms_show] = 0;
+        states[fms_show]++;
+    });
+    commit('setVehicleStates', states);
 };
 
 export default {
@@ -236,10 +256,9 @@ export default {
                 [status: number]: number;
             };
             const states_show = {} as { [state: number]: number };
-            Object.keys(states).forEach(
-                key =>
-                    (states_show[fmsReal2Show[parseInt(key)]] =
-                        states[parseInt(key)])
+            Object.entries(fmsReal2Show).forEach(
+                ([real, show]) =>
+                    (states_show[show] = states[parseInt(real)] ?? 0)
             );
             state.vehicleStates = states_show;
         },
@@ -416,7 +435,16 @@ export default {
                 })
                     .then(res => res.json())
                     .then(states => {
-                        commit('setVehicleStates', states);
+                        commit('setVehicleStates', {
+                            ...Object.fromEntries(
+                                Object.entries(
+                                    ((window[PREFIX] as Vue).$t(
+                                        'fmsReal2Show'
+                                    ) as unknown) as Record<string, number>
+                                ).map(([, show]) => [show, 0])
+                            ),
+                            ...states,
+                        });
                         resolve();
                     });
             });

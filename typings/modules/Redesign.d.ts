@@ -5,11 +5,13 @@ import { AllianceAvatarWindow } from '../../src/modules/redesign/parsers/allianc
 import { AllianceListWindow } from '../../src/modules/redesign/parsers/alliances';
 import { AvatarWindow } from '../../src/modules/redesign/parsers/avatar';
 import { AwardsWindow } from '../../src/modules/redesign/parsers/awards';
+import { BewerbungenWindow } from '../../src/modules/redesign/parsers/bewerbungen';
 import { CoinsListWindow } from '../../src/modules/redesign/parsers/coins/list';
 import { CreditsDailyWindow } from '../../src/modules/redesign/parsers/credits/daily';
 import { CreditsListWindow } from '../../src/modules/redesign/parsers/credits/list';
 import { CreditsOverviewWindow } from '../../src/modules/redesign/parsers/credits/overview';
 import { EinsaetzeWindow } from '../../src/modules/redesign/parsers/einsaetze';
+import { EinsatzWindow } from '../../src/modules/redesign/parsers/einsatz';
 import { FreundeWindow } from '../../src/modules/redesign/parsers/freunde';
 import { NextFMSWindow } from '../../src/modules/redesign/parsers/vehicle/nextfms';
 import { ProfileEditWindow } from '../../src/modules/redesign/parsers/profile/edit';
@@ -43,12 +45,14 @@ type types =
     | 'alliances'
     | 'avatar'
     | 'awards'
+    | 'bewerbungen'
     | 'default'
     | 'coins/list'
     | 'credits/daily'
     | 'credits/list'
     | 'credits/overview'
     | 'einsaetze'
+    | 'einsatz'
     | 'freunde'
     | 'profile'
     | 'profile/edit'
@@ -71,11 +75,13 @@ type windows =
     | AllianceListWindow
     | AvatarWindow
     | AwardsWindow
+    | BewerbungenWindow
     | CoinsListWindow
     | CreditsDailyWindow
     | CreditsListWindow
     | CreditsOverviewWindow
     | EinsaetzeWindow
+    | EinsatzWindow
     | FreundeWindow
     | NextFMSWindow
     | ProfileWindow
@@ -96,6 +102,7 @@ export type routeChecks = Record<string, types>;
 
 interface Data<T, W> {
     faSyncAlt: IconDefinition;
+    cliboardIconId: string;
     type: T;
     data: W & {
         authenticity_token: string;
@@ -129,9 +136,11 @@ export interface RedesignLightbox<
         getSetting(): <T>(setting: string, defaultValue: T) => Promise<T>;
         setSetting(): <T>(settingId: string, value: T) => Promise<void>;
         finishLoading(text?: string): void;
+        copyUrl(): void;
     };
     Computed: {
         loaderOffset: number;
+        fullUrl: string;
         src: string;
     };
     Props: {

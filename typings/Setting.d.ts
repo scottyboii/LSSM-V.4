@@ -4,8 +4,7 @@ interface SettingTemplate {
     type: string;
     dependsOn?: string;
     noMapkit?: boolean;
-    disabled?(): boolean;
-    disabled?(settings: ModuleSettings): boolean;
+    disabled?: ((settings: ModuleSettings) => boolean) | (() => boolean);
 
     // Will be generated in Settings
     isDisabled: boolean;
@@ -19,6 +18,12 @@ interface Toggle extends SettingTemplate {
 
 interface Text extends SettingTemplate {
     type: 'text';
+    default: string;
+    value: string;
+}
+
+interface Textarea extends SettingTemplate {
+    type: 'textarea';
     default: string;
     value: string;
 }
@@ -100,6 +105,7 @@ export interface AppendableList extends SettingTemplate {
 type SettingType =
     | Toggle
     | Text
+    | Textarea
     | AppendableList
     | Select
     | MultiSelect

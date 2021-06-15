@@ -95,7 +95,7 @@ export default ((MODULE_ID, LSSM, $m) => {
             // @ts-ignore
             disabled: (settings): boolean =>
                 !settings[MODULE_ID]['vehicles.content'].value ||
-                settings[MODULE_ID]['hide_battalion_chief_vehicles'].value,
+                !!settings[MODULE_ID]['hide_battalion_chief_vehicles'].value,
         },
         'hide_battalion_chief_vehicles': <Toggle>{
             type: 'toggle',
@@ -104,8 +104,9 @@ export default ((MODULE_ID, LSSM, $m) => {
             // @ts-ignore
             disabled: (settings): boolean =>
                 !settings[MODULE_ID]['vehicles.content'].value ||
-                settings[MODULE_ID]['multifunctionals.battalion_chief_vehicles']
-                    .value,
+                !!settings[MODULE_ID][
+                    'multifunctionals.battalion_chief_vehicles'
+                ].value,
         },
         ...(locale === 'nl_NL'
             ? {
@@ -310,6 +311,15 @@ export default ((MODULE_ID, LSSM, $m) => {
                   bucket_only_if_needed: <Toggle>{
                       type: 'toggle',
                       default: false,
+                  },
+              }
+            : null),
+        ...(locale === 'de_DE'
+            ? {
+                  max_civil_patrol_replace_police_cars: <Toggle>{
+                      type: 'toggle',
+                      default: false,
+                      disabled: () => true,
                   },
               }
             : null),
