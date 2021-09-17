@@ -291,7 +291,10 @@ ${docsLangs
         }
     > = {};
     const noMapkitModules: Record<string, { title: string; f: string }[]> = {};
-    const locales: Record<string, { lang: string; title: string }> = {};
+    const locales: Record<
+        string,
+        { lang: string; title: string; description: string }
+    > = {};
 
     Object.entries(MODULES_BY_LANG).forEach(([lang, modules]) => {
         MODULES_BY_LANG[lang] = modules.sort((a, b) =>
@@ -313,6 +316,7 @@ ${docsLangs
         locales[langPath] = {
             lang,
             title: `LSS-Manager V.4 Wiki ${game.flag}`,
+            description: getLocale(lang, 'description').toString(),
         };
 
         themeLocales[langPath] = {
@@ -421,10 +425,17 @@ const fetchStableVersion = (): Promise<{ version: string }> =>
     fetch(`${config.server}static/build_stats.json`)
         .then(res =>
             res.status === 200
-                ? res.json()
-                : new Promise(resolve => resolve({ version: '4.x.x' }))
+                ? (res.json() as Promise<{ version: string }>)
+                : (new Promise(resolve =>
+                      resolve({ version: '4.x.x' })
+                  ) as Promise<{ version: string }>)
         )
-        .catch(() => new Promise(resolve => resolve({ version: '4.x.x' })));
+        .catch(
+            () =>
+                new Promise(resolve =>
+                    resolve({ version: '4.x.x' })
+                ) as Promise<{ version: string }>
+        );
 
 module.exports = async () => {
     await setLocales();

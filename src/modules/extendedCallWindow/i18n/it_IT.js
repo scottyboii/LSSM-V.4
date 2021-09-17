@@ -30,6 +30,7 @@ module.exports = {
         },
         arrSpecs: {
             fire: 'Autopompe',
+            wasser_amount: "Litri d'acqua",
             elw: 'Funzionario',
             elw2: 'UCL',
             dlk: 'Autoscala',
@@ -70,6 +71,9 @@ module.exports = {
             boot: 'Barca',
             fwk: 'AG',
             fbi_bomb_tech: 'Furgone artificieri',
+            brush_vehicle: 'Mezzo AIB',
+            brush_truck: 'Mezzo AIB',
+            fire_aviation: 'Unità Aerea Antincendio',
         },
     },
     generationDate: {
@@ -86,8 +90,11 @@ module.exports = {
             minified: 'crollo',
             overlay: 'Sovrapposizione',
             reload: 'Ricaricare',
+            pushRight: 'mostra questa casella sopra la lista dei veicoli',
+            pushLeft: 'mostra questa scatola nella posizione originale',
         },
         selected: 'Selezionato',
+        water: "l. d'acqua",
         vehiclesByRequirement: {
             [/^APS\/ABP$/]: [0, 9],
             [/^Autogrù$/]: [12],
@@ -98,7 +105,7 @@ module.exports = {
             [/^Kilolitric(a|he)?$/]: [5],
             [/^UCL?$/]: [11],
             [/^N\.B\.C\.R\.$/]: [6],
-            [/^Ambulance(s)?$/]: [4, 20],
+            [/^Ambulanz(a|e) BLSD?$/]: [4, 20],
             [/^Volanti?$/]: [7, 16],
             [/^Furgoni artificieri$/]: [22],
             [/^Elicottero della polizia?$/]: [13],
@@ -109,11 +116,21 @@ module.exports = {
             [/^Camion Tecnico NSSA?$/]: [23],
             [/^Pickup SAF?$/]: [24],
             [/^Barche?$/]: [25],
+            [/^Mezz(i|o) AIB?$/]: [28, 29, 30, 31, 32, 33],
+            [/^Velivol(i|o) Antincendio?$/]: [34, 35],
         },
     },
     tailoredTabs: {
         allTab: 'Tutti',
         occupiedTab: 'Continua missioni',
+        vehicleMissing: {
+            title:
+                'Un veicolo non è presente in nessuna scheda | Diversi veicoli non sono presenti in nessuna scheda',
+            text:
+                'I seguenti tipi di veicoli sono presenti solo nella scheda "Tutti":',
+            hide: 'Nascondere la nota',
+            close: 'Chiudere Nota fino al cambiamento',
+        },
     },
     hideVehicleList: {
         show: 'Mostra lista veicoli',
