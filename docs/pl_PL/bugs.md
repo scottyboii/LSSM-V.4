@@ -1,13 +1,13 @@
 ---
-title: Known Bugs 🐛
+title: Znane błędy 🐛
 lang: pl_PL
 sidebarDepth: 2
 ---
 
-# Known Bugs :bug:
+# Znane błędy :bug:
 
-**Currently there are no known bugs :tada:**
-
-:::warning actuality
-We do our best to keep this page up to date. Please note, however, that unfortunately this is not always possible. Some of the reported bugs can also be found in our [Github Issues](https://github.com/LSS-Manager/LSSM-V.4/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+:::tip Aktualności
+Ten przegląd jest aktualizowany przy każdym zatwierdzeniu (aktualizacji) wersji beta LSSM. Zawsze możesz znaleźć najnowszą wersję w naszym <a :href="$theme.variables.github + '/issues?q=is%3Aissue+is%3Aopen+label%3Abug'" target="_blank">Problemy GitHub</a>
 :::
+
+<bugs no-bugs="Obecnie nie ma znanych błędów!"></bugs>

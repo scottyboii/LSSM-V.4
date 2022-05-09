@@ -1,9 +1,8 @@
-declare module 'copy-dir' {
-    interface Options {
-        utimes: boolean;
-        mode: boolean | number;
-        cover: boolean;
-        filter: boolean | ((...args: unknown[]) => boolean);
+import type { ThemeData } from './types/ThemeData';
+
+declare module 'vue/types/vue' {
+    interface Vue {
+        $lang: string;
+        $theme: ThemeData;
     }
-    export function sync(from: string, to: string, options?: Options): void;
 }

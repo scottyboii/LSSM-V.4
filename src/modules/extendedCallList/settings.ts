@@ -1,28 +1,27 @@
-import { Mission } from 'typings/Mission';
-import { $m, ModuleSettingFunction } from 'typings/Module';
-import {
+import type { $m, ModuleSettingFunction } from 'typings/Module';
+import type {
     AppendableList,
     AppendableListSetting,
     Hidden,
     MultiSelect,
+    NumberInput,
+    Select,
     Text,
     Toggle,
 } from 'typings/Setting';
 
 export default (async (MODULE_ID: string, LSSM: Vue, $m: $m) => {
-    const missions = (await LSSM.$store.dispatch('api/getMissions', {
-        force: false,
-        feature: `${MODULE_ID}-settings`,
-    })) as Mission[];
-    const missionIds = [] as string[];
-    const missionNames = [] as string[];
-    missions.forEach(({ id, name }) => {
-        missionIds.push(id.toString());
-        missionNames.push(`${id}: ${name}`);
-    });
+    const { missionIds, missionNames } = await LSSM.$utils.getMissionOptions(
+        LSSM,
+        MODULE_ID,
+        'settings'
+    );
 
     const defaultEventmissions = Object.entries(
-        $m('eventMissions.default') as Record<string, Record<number, number>>
+        $m('eventMissions.default') as unknown as Record<
+            string,
+            Record<number, number>
+        >
     ).map(([text, missions]) => ({
         text,
         missions: Object.values(missions),
@@ -30,6 +29,20 @@ export default (async (MODULE_ID: string, LSSM: Vue, $m: $m) => {
         text: string;
         missions: number[];
     }[];
+
+    const locale = LSSM.$store.state.lang;
+
+    const bootsTrapColors = [
+        'success',
+        'warning',
+        'danger',
+        'primary',
+        'info',
+        'default',
+    ];
+    const bootsTrapColorLabels = bootsTrapColors.map(color =>
+        $m(`settings.shareMissionsButtonColor.${color}`).toString()
+    );
 
     return {
         remainingTime: <Toggle>{
@@ -41,6 +54,18 @@ export default (async (MODULE_ID: string, LSSM: Vue, $m: $m) => {
             default: true,
             dependsOn: '.remainingTime',
         },
+        remainingPatientTime: <Toggle>{
+            type: 'toggle',
+            default: false,
+        },
+        ...(['de_DE'].includes(locale)
+            ? {
+                  remainingPumpingTime: <Toggle>{
+                      type: 'toggle',
+                      default: false,
+                  },
+              }
+            : {}),
         starrableMissions: <Toggle>{
             type: 'toggle',
             default: false,
@@ -52,7 +77,85 @@ export default (async (MODULE_ID: string, LSSM: Vue, $m: $m) => {
             type: 'toggle',
             default: true,
         },
-        eventMissions: <Omit<AppendableList, 'value' | 'isDisabled'>>{
+        collapsableMissions: <Toggle>{
+            type: 'toggle',
+            default: false,
+        },
+        collapsedMissions: <Hidden>{
+            type: 'hidden',
+        },
+        allMissionsCollapsed: <Hidden>{
+            type: 'hidden',
+        },
+        shareMissions: <Toggle>{
+            type: 'toggle',
+            default: false,
+        },
+        shareMissionsTypes: <Omit<MultiSelect, 'isDisabled' | 'value'>>{
+            type: 'multiSelect',
+            values: ['', 'sicherheitswache', 'alliance'],
+            labels: [
+                $m('settings.shareMissionsTypes.own'),
+                $m('settings.shareMissionsTypes.sicherheitswache'),
+                $m('settings.shareMissionsTypes.alliance'),
+            ],
+            default: ['', 'sicherheitswache'],
+            dependsOn: '.shareMissions',
+        },
+        shareMissionsMinCredits: <NumberInput>{
+            type: 'number',
+            default: 0,
+            min: 0,
+            step: 1,
+            dependsOn: '.shareMissions',
+        },
+        shareMissionsButtonColor: <Select>{
+            type: 'select',
+            default: 'success',
+            values: bootsTrapColors,
+            labels: bootsTrapColorLabels,
+            dependsOn: '.shareMissions',
+        },
+        sortMissions: <Toggle>{
+            type: 'toggle',
+            default: false,
+        },
+        sortMissionsType: <Hidden>{
+            type: 'hidden',
+        },
+        sortMissionsDirection: <Hidden>{
+            type: 'hidden',
+        },
+        sortMissionsButtonColor: <Select>{
+            type: 'select',
+            default: 'default',
+            values: bootsTrapColors,
+            labels: bootsTrapColorLabels,
+            dependsOn: '.sortMissions',
+        },
+        sortMissionsInMissionwindow: <Toggle>{
+            type: 'toggle',
+            default: true,
+            dependsOn: '.sortMissions',
+        },
+        sortMissionsInMissionwindowChecked: <Hidden>{
+            type: 'hidden',
+        },
+        currentPatients: <Toggle>{
+            type: 'toggle',
+            default: false,
+        },
+        hide0CurrentPatients: <Toggle>{
+            type: 'toggle',
+            default: true,
+            dependsOn: '.currentPatients',
+        },
+        currentPatientsInTooltips: <Toggle>{
+            type: 'toggle',
+            default: false,
+            dependsOn: '.currentPatients',
+        },
+        eventMissions: <Omit<AppendableList, 'isDisabled' | 'value'>>{
             type: 'appendable-list',
             default: defaultEventmissions,
             listItem: [
